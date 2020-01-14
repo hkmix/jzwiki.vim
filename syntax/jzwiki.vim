@@ -8,7 +8,6 @@ endif
 let s:cpo_save = &cpo
 set cpo&vim
 
-syn match helpHeadline		"^[-A-Z .][-A-Z0-9 .()]*[ \t]\+\*"me=e-1
 syn match helpSectionDelim	"^===.*===$"
 syn match helpSectionDelim	"^---.*--$"
 if has("conceal")
@@ -72,38 +71,10 @@ syn match helpSpecial		"<[-a-zA-Z0-9_ ]\+>"
 syn match helpNormal		"<---*>"
 
 " Highlight group items in their own color.
-syn match helpComment		"[Cc]omment[\t:]"
-syn match helpConstant		"[Cc]onstant[\t:]"
-syn match helpString		"[Ss]tring[\t:]"
-syn match helpCharacter		"[Cc]haracter[\t:]"
-syn match helpNumber		"[Nn]umber[\t:]"
-syn match helpBoolean		"[Bb]oolean[\t:]"
-syn match helpFloat		"[Ff]loat[\t:]"
-syn match helpIdentifier	"[Ii]dentifier[\t:]"
-syn match helpFunction		"[Ff]unction[\t:]"
-syn match helpStatement		"[Ss]tatement[\t:]"
-syn match helpConditional	"[Cc]onditional[\t:]"
-syn match helpRepeat		"[Rr]epeat[\t:]"
-syn match helpLabel		"[Ll]abel[\t:]"
-syn match helpOperator		"[Oo]perator[\t:]"
-syn match helpKeyword		"[Kk]eyword[\t:]"
-syn match helpException		"[Ee]xception[\t:]"
-syn match helpPreProc		"[Pp]reProc[\t:]"
-syn match helpInclude		"[Ii]nclude[\t:]"
-syn match helpDefine		"[Dd]efine[\t:]"
-syn match helpMacro		"[Mm]acro[\t:]"
-syn match helpPreCondit		"[Pp]reCondit[\t:]"
-syn match helpType		"[Tt]ype[\t:]"
-syn match helpStorageClass	"[Ss]torageClass[\t:]"
-syn match helpStructure		"[Ss]tructure[\t:]"
-syn match helpTypedef		"[Tt]ypedef[\t:]"
-syn match helpSpecial		"[Ss]pecial[\t:]"
-syn match helpSpecialChar	"[Ss]pecialChar[\t:]"
-syn match helpTag		"[Tt]ag[\t:]"
-syn match helpDelimiter		"[Dd]elimiter[\t:]"
-syn match helpSpecialComment	"[Ss]pecialComment[\t:]"
-syn match helpDebug		"[Dd]ebug[\t:]"
-syn match helpUnderlined	"[Uu]nderlined[\t:]"
+syn match helpCheckboxT		"\[[Xx]\]"
+syn match helpCheckboxF		"\[[^Xx]\]"
+syn match helpNavigation	"\([Pp]rev\|[Nn]ext\)[\t:]"
+syn match helpStatus		"[Ss]tatus[\t:]"
 syn match helpError		"[Ee]rror[\t:]"
 syn match helpTodo		"[Tt]odo[\t:]"
 
@@ -118,7 +89,6 @@ hi def link helpBar		Ignore
 hi def link helpBacktick	Ignore
 hi def link helpStar		Ignore
 hi def link helpHyperTextEntry	String
-hi def link helpHeadline	Statement
 hi def link helpHeader		PreProc
 hi def link helpSectionDelim	PreProc
 hi def link helpVim		Identifier
@@ -131,37 +101,10 @@ hi def link helpSpecial		Special
 hi def link helpNote		Todo
 hi def link Subtitle		Identifier
 
-hi def link helpComment		Comment
-hi def link helpConstant	Constant
-hi def link helpString		String
-hi def link helpCharacter	Character
-hi def link helpNumber		Number
-hi def link helpBoolean		Boolean
-hi def link helpFloat		Float
-hi def link helpIdentifier	Identifier
-hi def link helpFunction	Function
-hi def link helpStatement	Statement
-hi def link helpConditional	Conditional
-hi def link helpRepeat		Repeat
-hi def link helpLabel		Label
-hi def link helpOperator	Operator
-hi def link helpKeyword		Keyword
-hi def link helpException	Exception
-hi def link helpPreProc		PreProc
-hi def link helpInclude		Include
-hi def link helpDefine		Define
-hi def link helpMacro		Macro
-hi def link helpPreCondit	PreCondit
-hi def link helpType		Type
-hi def link helpStorageClass	StorageClass
-hi def link helpStructure	Structure
-hi def link helpTypedef		Typedef
-hi def link helpSpecialChar	SpecialChar
-hi def link helpTag		Tag
-hi def link helpDelimiter	Delimiter
-hi def link helpSpecialComment	SpecialComment
-hi def link helpDebug		Debug
-hi def link helpUnderlined	Underlined
+hi def link helpCheckboxT	Comment
+hi def link helpCheckboxF	Type
+hi def link helpNavigation	PreProc
+hi def link helpStatus		PreProc
 hi def link helpError		Error
 hi def link helpTodo		Todo
 hi def link helpURL		String
