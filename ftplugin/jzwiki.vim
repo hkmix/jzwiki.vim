@@ -19,7 +19,10 @@ endif
 nnoremap <silent> <buffer> <Leader>ht :helptags ./ <Bar> echo "Generated tags."<CR>
 nnoremap <silent> <buffer> <Leader>hl 79i-<Esc>
 nnoremap <silent> <buffer> <Leader>hL i<Bar>index<Bar><CR><CR><CR><CR><Esc>79i-<Esc>o vim:ft=jzwiki:<Esc>3k
+nnoremap <silent> <buffer> <Leader>hC T<Bar>"zyt<Bar>:sp <C-R>z.txt<CR>i<Bar>index<Bar><CR><CR>*<C-R>z*<CR><CR><CR><CR><Esc>79i-<Esc>o vim:ft=jzwiki:<Esc>3k:set filetype=jzwiki<CR>
 nnoremap <silent> <buffer> <Leader>tt mz:s/\[ \]/[X]/eI<CR>:s/\[x\]/[ ]/eI<CR>:s/\[X\]/[x]/eI<CR>`z
 
 let &cpo = s:cpo_save
 unlet s:cpo_save
+
+" vim: ft=vim

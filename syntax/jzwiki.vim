@@ -1,116 +1,94 @@
-" Help wiki syntax file, based on help.vim.
+" jz wiki syntax file, based on help.vim.
 
 " Quit when a (custom) syntax file was already loaded
 if exists("b:current_syntax")
   finish
 endif
 
-let s:cpo_save = &cpo
-set cpo&vim
-
-syn match helpSectionDelim	"^===.*===$"
-syn match helpSectionDelim	"^---.*--$"
-if has("conceal")
-  syn region helpExample	matchgroup=helpIgnore start=" >$" start="^>$" end="^[^ \t]"me=e-1 end="^<" concealends
-else
-  syn region helpExample	matchgroup=helpIgnore start=" >$" start="^>$" end="^[^ \t]"me=e-1 end="^<"
-endif
 if has("ebcdic")
-  syn match helpHyperTextJump	"\\\@<!|[^"*|]\+|" contains=helpBar
-  syn match helpHyperTextEntry	"\*[^"*|]\+\*\s"he=e-1 contains=helpStar
-  syn match helpHyperTextEntry	"\*[^"*|]\+\*$" contains=helpStar
+  syn match jzHyperTextJump	"\\\@<!|[^"*|]\+|" contains=jzBar
+  syn match jzHyperTextEntry	"\*[^"*|]\+\*\s"he=e-1 contains=jzStar
+  syn match jzHyperTextEntry	"\*[^"*|]\+\*$" contains=jzStar
 else
-  syn match helpHyperTextJump	"\\\@<!|[#-)!+-~]\+|" contains=helpBar
-  syn match helpHyperTextEntry	"\*[#-)!+-~]\+\*\s"he=e-1 contains=helpStar
-  syn match helpHyperTextEntry	"\*[#-)!+-~]\+\*$" contains=helpStar
+  syn match jzHyperTextJump	"\\\@<!|[#-)!+-~]\+|" contains=jzBar
+  syn match jzHyperTextEntry	"\*[#-)!+-~]\+\*\s"he=e-1 contains=jzStar
+  syn match jzHyperTextEntry	"\*[#-)!+-~]\+\*$" contains=jzStar
 endif
-if has("conceal")
-  syn region helpExample	matchgroup=helpIgnore start=" >$" start="^>$" end="^[^ \t]"me=e-1 end="^<" concealends
-else
-  syn region helpExample	matchgroup=helpIgnore start=" >$" start="^>$" end="^[^ \t]"me=e-1 end="^<"
-endif
-if has("conceal")
-  syn match helpBar		contained "|" conceal
-  syn match helpBacktick	contained "`" conceal
-  syn match helpStar		contained "\*" conceal
-  syn match helpBraceL		contained "{" conceal
-  syn match helpBraceR		contained "}" conceal
-else
-  syn match helpBar		contained "|"
-  syn match helpBacktick	contained "`"
-  syn match helpStar		contained "\*"
-  syn match helpBraceL		contained "{"
-  syn match helpBraceR		contained "}"
-endif
-syn match helpNormal		"|.*====*|"
-syn match helpNormal		"|||"
-syn match helpModeline		"vim:.*"
-syn match helpOption		"'[a-z]\{2,\}'"
-syn match helpOption		"'t_..'"
-syn match helpCommand		"`[^`]\+`"hs=s+1,he=e-1 contains=helpBacktick
-syn match helpHeader		"\s*\zs.\{-}\ze\s\=\~$" nextgroup=helpIgnore
-syn match helpGraphic		".* \ze`$" nextgroup=helpIgnore
-if has("conceal")
-  syn match helpIgnore		"." contained conceal
-else
-  syn match helpIgnore		"." contained
-endif
-syn keyword helpNote		note Note NOTE note: Note: NOTE: Notes Notes:
-syn match helpSpecial		"\<N\>"
-syn match helpSpecial		"\<N\.$"me=e-1
-syn match helpSpecial		"\<N\.\s"me=e-2
-syn match helpSpecial		"(N\>"ms=s+1
-syn match helpSpecial		"\[N]"
-" avoid highlighting N  N in help.txt
-syn match helpSpecial		"N  N"he=s+1
-syn match helpSpecial		"Nth"me=e-2
-syn match helpSpecial		"N-1"me=e-2
-syn match helpSpecial		"{[-a-zA-Z0-9'"*+/:%#=[\]<>., ]\+}" contains=helpBraceL,helpBraceR
-syn match helpSpecial		"\s\[[-a-z^A-Z0-9_]\{2,}]"ms=s+1
-syn match helpSpecial		"<[-a-zA-Z0-9_ ]\+>"
-syn match helpNormal		"<---*>"
 
-" Highlight group items in their own color.
-syn match helpCheckboxT		"\[[Xx]\]"
-syn match helpCheckboxF		"\[[^Xx]\]"
-syn match helpNavigation	"\([Pp]rev\|[Nn]ext\)[\t:]"
-syn match helpStatus		"[Ss]tatus[\t:]"
-syn match helpError		"[Ee]rror[\t:]"
-syn match helpTodo		"[Tt]odo[\t:]"
+if has("conceal")
+  syn match jzBacktick		contained "`" conceal
+  syn match jzBar		contained "|" conceal
+  syn match jzBraceL		contained "{" conceal
+  syn match jzBraceR		contained "}" conceal
+  syn match jzFwdSlash		contained "/" conceal
+  syn match jzIgnore		contained "." conceal
+  syn match jzItalic		contained "/" conceal
+  syn match jzStar		contained "\*" conceal
+  syn match jzUnderscore	contained "_" conceal
+else
+  syn match jzBacktick		contained "`"
+  syn match jzBar		contained "|"
+  syn match jzBraceL		contained "{"
+  syn match jzBraceR		contained "}"
+  syn match jzFwdSlash		contained "/"
+  syn match jzIgnore		contained "."
+  syn match jzItalic		contained "/"
+  syn match jzStar		contained "\*"
+  syn match jzUnderscore	contained "_"
+endif
+syn match jzModeline		"vim:.*"
+syn match jzModeline		"^\s*-\{3,\}$"
+syn region jzCodeBlock		start=/```/ end=/```/
+syn match jzCommand		"`[^`]\+`" contains=jzBacktick,jzBacktick
+syn match jzItalic		"/[^/]\+/" contains=jzFwdSlash,jzFwdSlash
+syn match jzUnderlined		"_[^_]\+_" contains=jzUnderscore,jzUnderscore
+syn match jzNote		"\c\(todo\|note\):"
+syn match jzBolded		"{[^}]\+}" contains=jzBraceL,jzBraceR
+syn match jzSpecial		"<[-a-zA-Z0-9_ ]\+>"
+
+syn match jzSectionDelim	"^#\+.*$"
+syn match jzCheckboxT		"\[[Xx-]\]"
+syn match jzCheckboxF		"\[[^Xx-]\]"
+syn match jzNavigation		"\c\(prev\|next\):"
+syn match jzStatus		"\cstatus:"
+syn match jzError		"\cerror:"
 
 syn sync minlines=40
 
+" Custom highlights
+hi Bold				cterm=bold gui=bold
+hi Italic			cterm=italic gui=italic
+hi Underline			cterm=underline gui=underline
 
-" Define the default highlighting.
-" Only used when an item doesn't have highlighting yet
-hi def link helpIgnore		Ignore
-hi def link helpHyperTextJump	Subtitle
-hi def link helpBar		Ignore
-hi def link helpBacktick	Ignore
-hi def link helpStar		Ignore
-hi def link helpHyperTextEntry	String
-hi def link helpHeader		PreProc
-hi def link helpSectionDelim	PreProc
-hi def link helpVim		Identifier
-hi def link helpModeline	Comment
-hi def link helpCommand		Comment
-hi def link helpExample		Comment
-hi def link helpOption		Type
-hi def link helpNotVi		Special
-hi def link helpSpecial		Special
-hi def link helpNote		Todo
 hi def link Subtitle		Identifier
+hi def link jzBacktick		Ignore
+hi def link jzBar		Ignore
+hi def link jzBolded		Bold
+hi def link jzCodeBlock		Comment
+hi def link jzCommand		Comment
+hi def link jzExample		Comment
+hi def link jzHeader		PreProc
+hi def link jzHyperTextEntry	helpHyperTextEntry
+hi def link jzHyperTextJump	helpHyperTextJump
+hi def link jzIgnore		Ignore
+hi def link jzItalic		Italic
+hi def link jzModeline		Comment
+hi def link jzNotVi		Special
+hi def link jzNote		Todo
+hi def link jzOption		Type
+hi def link jzSectionDelim	Special
+hi def link jzSpecial		helpVim
+hi def link jzStar		Ignore
+hi def link jzUnderlined	Underline
 
-hi def link helpCheckboxT	Comment
-hi def link helpCheckboxF	Type
-hi def link helpNavigation	PreProc
-hi def link helpStatus		PreProc
-hi def link helpError		Error
-hi def link helpTodo		Todo
-hi def link helpURL		String
+hi def link jzCheckboxT		Comment
+hi def link jzCheckboxF		Type
+hi def link jzNavigation	PreProc
+hi def link jzStatus		PreProc
+hi def link jzError		Error
+hi def link jzTodo		Todo
+hi def link jzURL		String
 
 let b:current_syntax = "jzwiki"
 
-let &cpo = s:cpo_save
-unlet s:cpo_save
-" vim: ts=8 sw=2
+" vim: ts=8 sw=2 noet
