@@ -1,6 +1,6 @@
 # jzwiki
 
-jzwiki is a simple and opinionated help.vim-based "wiki" system for my personal rapid documentation use.Feel free to hack it up to suit your own needs.
+jzwiki is a simple and opinionated help.vim-based "wiki" system for my personal rapid documentation use. Feel free to hack it up to suit your own needs.
 
 ## Usage
 
@@ -13,14 +13,14 @@ The syntax is a mishmash of markdown, help.vim, and a touch of Org-mode. It has 
 - `*anchor_name*`: Hyper text entry, this marks the jump-to anchor.
     - Please note that for hyper text entries and names, they must not contain spaces. If it is not highlighted as a link, it won't work.
 - `|link_name|`: Hyper text link, you use `<C-]>` on this to jump to the corresponding anchor.
+- `# Title`: Supports any number of `#` symbols. Works like markdown titles.
 - `` `code text` ``: Text that is code, coloured like a comment.
+- Triple backtick code blocks also treated like code, a la markdown.
 - `{emphasis}`: Bold text.
 - `/emphasis/`: Italic text.
 - `_emphasis_`: Underlined text.
 - `[ ]` (incomplete), `[x]` (complete), `[-]` (aborted): Checkboxes, three states.
 - `<special>`: Emphasized text (angular braces are not concealed).
-- `# Title`: Supports any number of `#` symbols. Works like markdown titles.
-- Triple backtick code blocks also treated like code, a la markdown.
 - Special highlighted words:
     - `vim: ...`: The vim modeline. Useful to treat `.txt` files as `jzwiki` filetype.
     - `(prev|next|status|error):` (colon necessary): For special hyperlinks or highlights.
