@@ -36,7 +36,7 @@ else
   syn match jzStar		contained "\*"
   syn match jzUnderscore	contained "_"
 endif
-syn match jzModeline		"vim:.*"
+syn match jzModeline		"^\s*vim:.*"
 syn match jzModeline		"^\s*-\{3,\}$"
 syn region jzCodeBlock		start=/```/ end=/```/
 syn match jzCommand		"`[^`]\+`" contains=jzBacktick,jzBacktick
