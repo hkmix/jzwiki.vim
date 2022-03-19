@@ -1,0 +1,122 @@
+*jzwiki.txt*	jzwiki.vim help
+
+==============================================================================
+
+CONTENTS						*jzwiki-contents*
+
+Introduction						|jzwiki-introduction|
+Syntax							|jzwiki-syntax|
+Commands						|jzwiki-commands|
+Options							|jzwiki-options|
+
+==============================================================================
+
+INTRODUCTION						*jzwiki-introduction*
+
+jzwiki is a simple and opinionated help.vim-based "wiki" system for my
+personal rapid documentation use. Feel free to hack it up to suit your own
+needs.
+
+All files should have the `.txt` extension. Links use the standard helptags
+system and so inherit their restrictions.
+
+==============================================================================
+
+SYNTAX							*jzwiki-syntax*
+
+The syntax is a mishmash of markdown, help.vim, and a touch of Org-mode. It
+has the following:
+
+	`*anchor_name*`
+		Hyper text entry, this marks the jump-to anchor.
+		Note: For hyper text entries and names, they must not contain
+		spaces. If it is not highlighted as a link, it won't work.
+
+	`|link_name|`
+		Hyper text link, you use *CTRL-]* on this to jump to the
+		corresponding anchor.
+
+	`# Title`
+		Supports any number of `#` symbols. Works like markdown titles.
+
+	`<backtick>code text<backtick>`
+		Text that is code, coloured like a comment.
+		Note: Triple backtick code blocks also treated like code, a la
+		markdown.
+
+	`{emphasis}`
+		Bold text.
+
+	`/emphasis/`
+		Italic text.
+
+	`_emphasis_`
+		Underlined text.
+
+	`[ ]` (incomplete)
+	`[x]` (complete)
+	`[-]` (aborted)
+		Checkboxes, three states.
+
+	`<special>`
+		Emphasized text (angular braces are not concealed).
+
+There are a number of special highlighted words:
+
+	`vim: ...`
+		The vim modeline. Useful to treat `.txt` files as `jzwiki`
+		filetype.
+
+	`(prev|next|status|error):` (colon necessary)
+		For special hyperlinks or highlights.
+
+==============================================================================
+
+COMMANDS						*jzwiki-commands*
+
+By default, for simplicity, jzwiki does not define any vim functions to
+perform its actions. It uses just mappings. If you would like to avoid
+creating these, please set |g:jzwiki_nocommands| to 1.
+
+	<Leader>ht
+		Generate the helptags file for either the found root directory
+		(see |g:jzwiki_rootfile|).
+
+	<Leader>hl
+		Generate a 79-char wide line of hyphens "-".
+
+	<Leader>hL
+		Generate a 79-char wide line of hyphens "-" as well as a basic
+		useful modeline and a link to the index.
+
+	<Leader>hC
+		Open the file linked under the cursor and then performs the
+		same actions as `<Leader>hL`. For example, if the cursor lies
+		on "this_tag", opens "this_tag.txt". This may create a new
+		buffer but will not save the new file automatically.
+
+	<Leader>tt
+		Toggle the state of the checkbox on the line between checked
+		("x") and unchecked (" ").
+
+==============================================================================
+
+OPTIONS							*jzwiki-options*
+
+	g:jzwiki_nocommands				*g:jzwiki_nocommands*
+		Avoid creating the default command mappings.
+
+		The default value is:
+>
+		let g:jzwiki_nocommands = 0
+<
+	g:jzwiki_rootfile				*g:jzwiki_rootfile*
+		Set the name of the root file to detect. Set this to blank to
+		always treat the currect directory as the root.
+
+		The default value is:
+>
+		let g:jzwiki_rootfile = ".wiki_root"
+<
+------------------------------------------------------------------------------
+ vim:tw=78:sw=0:ts=8:noet:ft=help:norl:cocu=nc:
