@@ -76,11 +76,11 @@ COMMANDS						*jzwiki-commands*
 
 By default, for simplicity, jzwiki does not define any vim functions to
 perform its actions. It uses just mappings. If you would like to avoid
-creating these, please set |g:jzwiki_nocommands| to 1.
+creating these, please set |g:jzwiki_no_mappings| to 1.
 
 	<Leader>ht
 		Generate the helptags file for either the found root directory
-		(see |g:jzwiki_rootfile|).
+		(see |g:jzwiki_root_file|).
 
 	<Leader>hl
 		Generate a 79-char wide line of hyphens "-".
@@ -103,20 +103,30 @@ creating these, please set |g:jzwiki_nocommands| to 1.
 
 OPTIONS							*jzwiki-options*
 
-	g:jzwiki_nocommands				*g:jzwiki_nocommands*
+	g:jzwiki_no_mappings				*g:jzwiki_no_mappings*
 		Avoid creating the default command mappings.
 
 		The default value is:
 >
-		let g:jzwiki_nocommands = 0
+		let g:jzwiki_no_mappings = 0
 <
-	g:jzwiki_rootfile				*g:jzwiki_rootfile*
+	g:jzwiki_max_depth				*g:jzwiki_max_depth*
+		The maximum levels up the script will traverse in discovering
+		the root. Set to -1 to allow any depth. A value of 0 means the
+		current directory is used, same as setting an empty
+		|g:jzwiki_root_file|.
+
+		The default value is:
+>
+		let g:jzwiki_max_depth = -1
+<
+	g:jzwiki_root_file				*g:jzwiki_root_file*
 		Set the name of the root file to detect. Set this to blank to
 		always treat the currect directory as the root.
 
 		The default value is:
 >
-		let g:jzwiki_rootfile = '.wiki_root'
+		let g:jzwiki_root_file = '.wiki_root'
 <
 ------------------------------------------------------------------------------
- vim:tw=78:sw=0:ts=8:noet:ft=help:norl:cocu=nc:
+ vim:tw=78:sw=0:ts=8:noet:ft=help:norl:cocu=nc:fo-=t:
