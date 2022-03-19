@@ -116,7 +116,7 @@ OPTIONS							*jzwiki-options*
 
 		The default value is:
 >
-		let g:jzwiki_rootfile = ".wiki_root"
+		let g:jzwiki_rootfile = '.wiki_root'
 <
 ------------------------------------------------------------------------------
  vim:tw=78:sw=0:ts=8:noet:ft=help:norl:cocu=nc:
