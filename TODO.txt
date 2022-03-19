@@ -1,0 +1,15 @@
+# jzwiki To-Do
+
+## Syntax-level
+
+Nothing so far.
+
+## Script-level
+
+- [x] Implement detection of wiki root
+  - [ ] Detect .wiki_root file
+  - [ ] Make `<Leader>hC` create the file in the same directory as the original
+- [-] Make configurable whether an index should be generated
+
+-------------------------------------------------------------------------------
+ vim:ft=jzwiki:
