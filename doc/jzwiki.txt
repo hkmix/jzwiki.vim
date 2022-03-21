@@ -110,6 +110,13 @@ OPTIONS							*jzwiki-options*
 >
 		let g:jzwiki_no_mappings = 0
 <
+	g:jzwiki_modeline				*g:jzwiki_modeline*
+		Override the modeline added by mappings and file creation.
+
+		The default value is:
+>
+		let g:jzwiki_modeline = ' vim:ft=jzwiki:'
+<
 	g:jzwiki_max_depth				*g:jzwiki_max_depth*
 		The maximum levels up the script will traverse in discovering
 		the root. Set to -1 to allow any depth. A value of 0 means the
@@ -127,6 +134,22 @@ OPTIONS							*jzwiki-options*
 		The default value is:
 >
 		let g:jzwiki_root_file = '.wiki_root'
+<
+	g:jzwiki_index_tag				*g:jzwiki_index_tag*
+		If set, automatically adds a link to this index tag when
+		creating a template with `<Leader>hL` or creating a file with
+		`<Leader>hC`.
+
+		The default value is:
+>
+		let g:jzwiki_index_name = ''
+<
+	g:jzwiki_toggle_caps				*g:jzwiki_toggle_caps*
+		If set, checkboxes toggle between [ ] and [X] instead of [x].
+
+		The default value is:
+>
+		let g:jzwiki_toggle_caps = 0
 <
 ------------------------------------------------------------------------------
  vim:tw=78:sw=0:ts=8:noet:ft=help:norl:cocu=nc:fo-=t:

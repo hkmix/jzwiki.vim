@@ -7,8 +7,8 @@ Nothing so far.
 ## Script-level
 
 - [x] Implement detection of wiki root
-  - [ ] Detect .wiki_root file
-  - [ ] Make `<Leader>hC` create the file in the same directory as the original
+  - [x] Detect .wiki_root file
+  - [x] Make `<Leader>hC` create the file in the same directory as the original
 - [-] Make configurable whether an index should be generated
 
 -------------------------------------------------------------------------------

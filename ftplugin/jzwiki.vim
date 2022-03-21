@@ -1,4 +1,4 @@
-" Custom help wiki syntax settings, same as help.vim.
+" Custom help wiki syntax settings, based on help.vim.
 
 if exists('b:did_ftplugin')
   finish
@@ -16,56 +16,28 @@ if has('conceal')
 endif
 
 " Set all the valid variables if unset.
-let g:jzwiki_no_commands = get(g:, 'jzwiki_no_commands', 0)
+let g:jzwiki_no_mappings = get(g:, 'jzwiki_no_mappings', 0)
+let g:jzwiki_modeline = get(g:, 'jzwiki_modeline', ' vim:ft=jzwiki:')
 let g:jzwiki_root_file = get(g:, 'jzwiki_root_file', '.wiki_root')
 let g:jzwiki_max_depth = get(g:, 'jzwiki_max_depth', -1)
+let g:jzwiki_index_tag = get(g:, 'jzwiki_index_tag', '')
+let g:jzwiki_toggle_caps = get(g:, 'jzwiki_toggle_caps', 0)
 
-" Detect root directory if it exists.
-function! jzwiki#detect_root()
-  let l:root_dir = getcwd()
-  if !empty(g:jzwiki_root_file)
-    let l:depth = g:jzwiki_max_depth
-    let l:maybe_root = l:root_dir
-    while !empty(l:maybe_root) && l:depth != 0
-      if !empty(glob(l:maybe_root . '/' . g:jzwiki_root_file))
-        let l:root_dir = l:maybe_root
-        break
-      endif
+nnoremap <silent> <script> <Plug>JzwikiHelpTags :call jzwiki#create_help_tags()<CR>
+nnoremap <silent> <script> <Plug>JzwikiHLine :call jzwiki#horizontal_line()<CR>
+nnoremap <silent> <script> <Plug>JzwikiModeline :call jzwiki#modeline()<CR>
+nnoremap <silent> <script> <Plug>JzwikiCreateFile :call jzwiki#create_file()<CR>
+nnoremap <silent> <script> <Plug>JzwikiToggleCheckbox :call jzwiki#toggle_checkbox()<CR>
 
-      " If next root is same as current one, we are at the root, so abort.
-      let l:next_root = fnamemodify(l:maybe_root, ":h")
-      if l:next_root == l:maybe_root
-        break
-      endif
-
-      let l:maybe_root = l:next_root
-      let l:depth -= 1
-    endwhile
-  endif
-
-  return l:root_dir
-endfunction
-
-function! jzwiki#create_help_tags() abort
-  " It's more efficient to cache this but we want to respect the user changing
-  " the g: variables after starting vim, so we should just retrieve it every
-  " time.
-  let l:root_dir = jzwiki#detect_root()
-  echo 'Generating tags in: ' . l:root_dir
-  execute 'helptags ' . l:root_dir
-endfunction
-
-command! JzwikiHelpTags call jzwiki#create_help_tags()
-
-if !g:jzwiki_nomappings
-  nnoremap <silent> <buffer> <Leader>ht :JzwikiHelpTags<CR>
-  nnoremap <silent> <buffer> <Leader>hl 79i-<Esc>
-  nnoremap <silent> <buffer> <Leader>hL i<Bar>index<Bar><CR><CR><CR><CR><Esc>79i-<Esc>o vim:ft=jzwiki:<Esc>3k
-  nnoremap <silent> <buffer> <Leader>hC T<Bar>"zyt<Bar>:sp <C-R>z.txt<CR>i<Bar>index<Bar><CR><CR>*<C-R>z*<CR><CR><CR><CR><Esc>79i-<Esc>o vim:ft=jzwiki:<Esc>3k:set filetype=jzwiki<CR>
-  nnoremap <silent> <buffer> <Leader>tt mz:s/\[ \]/[X]/eI<CR>:s/\[x\]/[ ]/eI<CR>:s/\[X\]/[x]/eI<CR>`z
+if !g:jzwiki_no_mappings
+  nmap <silent> <buffer> <Leader>ht <Plug>JzwikiHelpTags
+  nmap <silent> <buffer> <Leader>hl <Plug>JzwikiHLine
+  nmap <silent> <buffer> <Leader>hL <Plug>JzwikiModeline
+  nmap <silent> <buffer> <Leader>hC <Plug>JzwikiCreateFile
+  nmap <silent> <buffer> <Leader>tt <Plug>JzwikiToggleCheckbox
 endif
 
 let &cpo = s:cpo_save
 unlet s:cpo_save
 
-" vim: ft=vim
+" vim: ft=vim:et:ts=2:sw=0:sts=-1
