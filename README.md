@@ -6,4 +6,4 @@ See `:help jzwiki` for full documentation, or `:help jzwiki-syntax` for a quick 
 
 ## Example
 
-[[examples/screenshot.png]]
+![Example image based on examples/index.txt](examples/screenshot.png)
