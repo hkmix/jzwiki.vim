@@ -1,0 +1,38 @@
+*index*  `<-- this is just an anchor to link to`
+
+# Features
+
+  - You can {bold}, _underline_, /italicize/ text (if your terminal supports it).
+  - Backticks dims text, but can be used to `show_code_snippets`.
+  - [ ] Checkboxes can be toggled, try {<Leader>tt} on this line.
+    - [x] They look like this when toggled
+  - You can link to |another_file|.
+    - Jumping to the link is just like in vim help, with {<C-]>}.
+    - If that file doesn't exist, put the cursor on the link and use {<Leader>hC} to create it automatically.
+    - Just remember to {<Leader>ht} to update the helptags once the file is created.
+
+# Other features
+
+Here is a fenced block:
+
+```vim
+if g:said_hello = 0
+  echo 'Hello, world!'
+  let g:said_hello = 1
+endif
+```
+
+You can create a line by using {<Leader>hl} and a modeline with {<Leader>hL}.
+
+Other highlighted items (colon required where shown, not case-sensitive):
+  - prev:
+  - next:
+  - status:
+  - error:
+  - warn: or warning:
+  - <important note>
+  - note:
+  - todo:
+
+-------------------------------------------------------------------------------
+ vim:ft=jzwiki:

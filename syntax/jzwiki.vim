@@ -36,22 +36,23 @@ else
   syn match jzStar		contained "\*"
   syn match jzUnderscore	contained "_"
 endif
-syn match jzModeline		"^\s*vim:.*"
-syn match jzModeline		"^\s*-\{3,\}$"
 syn region jzCodeBlock		start=/```/ end=/```/
 syn match jzCommand		"`[^`]\+`" contains=jzBacktick,jzBacktick
 syn match jzItalic		"/[^/]\+/" contains=jzFwdSlash,jzFwdSlash
 syn match jzUnderlined		"_[^_]\+_" contains=jzUnderscore,jzUnderscore
-syn match jzNote		"\c\(todo\|note\):"
 syn match jzBolded		"{[^}]\+}" contains=jzBraceL,jzBraceR
-syn match jzSpecial		"<[-a-zA-Z0-9_ ]\+>"
 
-syn match jzSectionDelim	"^#\+.*$"
-syn match jzCheckboxT		"\[[Xx-]\]"
 syn match jzCheckboxF		"\[[^Xx-]\]"
-syn match jzNavigation		"\c\(prev\|next\):"
-syn match jzStatus		"\cstatus:"
+syn match jzCheckboxT		"\[[Xx-]\]"
 syn match jzError		"\cerror:"
+syn match jzModeline		"^\s*-\{3,\}$"
+syn match jzModeline		"^\s*vim:.*"
+syn match jzNavigation		"\c\(prev\|next\):"
+syn match jzNote		"\c\(todo\|note\):"
+syn match jzSectionDelim	"^#\+.*$"
+syn match jzSpecial		"<[-a-zA-Z0-9_ ]\+>"
+syn match jzStatus		"\cstatus:"
+syn match jzWarning		"\cwarn\(ing\)\?:"
 
 syn sync minlines=40
 
@@ -64,8 +65,11 @@ hi def link Subtitle		Identifier
 hi def link jzBacktick		Ignore
 hi def link jzBar		Ignore
 hi def link jzBolded		Bold
+hi def link jzCheckboxF		Type
+hi def link jzCheckboxT		Comment
 hi def link jzCodeBlock		Comment
 hi def link jzCommand		Comment
+hi def link jzError		Error
 hi def link jzExample		Comment
 hi def link jzHeader		PreProc
 hi def link jzHyperTextEntry	helpHyperTextEntry
@@ -73,21 +77,18 @@ hi def link jzHyperTextJump	helpHyperTextJump
 hi def link jzIgnore		Ignore
 hi def link jzItalic		Italic
 hi def link jzModeline		Comment
+hi def link jzNavigation	PreProc
 hi def link jzNotVi		Special
 hi def link jzNote		Todo
 hi def link jzOption		Type
 hi def link jzSectionDelim	Special
 hi def link jzSpecial		helpVim
 hi def link jzStar		Ignore
-hi def link jzUnderlined	Underline
-
-hi def link jzCheckboxT		Comment
-hi def link jzCheckboxF		Type
-hi def link jzNavigation	PreProc
 hi def link jzStatus		PreProc
-hi def link jzError		Error
 hi def link jzTodo		Todo
 hi def link jzURL		String
+hi def link jzUnderlined	Underline
+hi def link jzWarning		Preproc
 
 let b:current_syntax = "jzwiki"
 

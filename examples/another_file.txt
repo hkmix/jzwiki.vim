@@ -1,0 +1,6 @@
+|index| > *another_file*
+
+If you jumped here from index, you can {<C-o>} to go back, or hover over "index" above and follow the link with {<C-]>}.
+
+-------------------------------------------------------------------------------
+ vim:ft=jzwiki:
