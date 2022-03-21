@@ -6,6 +6,6 @@ See `:help jzwiki` for full documentation, or `:help jzwiki-syntax` for a quick 
 
 ## Example
 
-This is what `examples/index.txt` looks like:
+This is what `examples/index.txt` looks like (theme is [vim-colors-solarized-simple](https://github.com/hkmix/vim-colors-solarized-simple)):
 
 ![Example image based on examples/index.txt](examples/screenshot.png)
