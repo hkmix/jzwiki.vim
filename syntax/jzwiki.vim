@@ -50,7 +50,7 @@ syn match jzModeline		"^\s*vim:.*"
 syn match jzNavigation		"\c\(prev\|next\):"
 syn match jzNote		"\c\(todo\|note\):"
 syn match jzSectionDelim	"^#\+.*$"
-syn match jzSpecial		"<[-a-zA-Z0-9_ ]\+>"
+syn match jzSpecial		"<[^>]\+>"
 syn match jzStatus		"\cstatus:"
 syn match jzWarning		"\cwarn\(ing\)\?:"
 
