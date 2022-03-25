@@ -95,6 +95,15 @@ creating these, please set |g:jzwiki_no_mappings| to 1.
 		on "this_tag", opens "this_tag.txt". This may create a new
 		buffer but will not save the new file automatically.
 
+	<Leader>hcs
+		Perform the same action as `<Leader>hC` but in a new split.
+
+	<Leader>hcv
+		Perform the same action as `<Leader>hC` but in a new vsplit.
+
+	<Leader>hct
+		Perform the same action as `<Leader>hC` but in a new tab.
+
 	<Leader>tt
 		Toggle the state of the checkbox on the line between checked
 		("x") and unchecked (" ").

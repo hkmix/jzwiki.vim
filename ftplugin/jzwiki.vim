@@ -27,6 +27,9 @@ nnoremap <silent> <script> <Plug>JzwikiHelpTags :call jzwiki#create_help_tags()<
 nnoremap <silent> <script> <Plug>JzwikiHLine :call jzwiki#horizontal_line()<CR>
 nnoremap <silent> <script> <Plug>JzwikiModeline :call jzwiki#modeline()<CR>
 nnoremap <silent> <script> <Plug>JzwikiCreateFile :call jzwiki#create_file()<CR>
+nnoremap <silent> <script> <Plug>JzwikiCreateFileSplit :split <Bar> call jzwiki#create_file()<CR>
+nnoremap <silent> <script> <Plug>JzwikiCreateFileVSplit :vsplit <Bar> call jzwiki#create_file()<CR>
+nnoremap <silent> <script> <Plug>JzwikiCreateFileTab <C-w>s<C-w>T:call jzwiki#create_file()<CR>
 nnoremap <silent> <script> <Plug>JzwikiToggleCheckbox :call jzwiki#toggle_checkbox()<CR>
 
 if !g:jzwiki_no_mappings
@@ -34,6 +37,9 @@ if !g:jzwiki_no_mappings
   nmap <silent> <buffer> <Leader>hl <Plug>JzwikiHLine
   nmap <silent> <buffer> <Leader>hL <Plug>JzwikiModeline
   nmap <silent> <buffer> <Leader>hC <Plug>JzwikiCreateFile
+  nmap <silent> <buffer> <Leader>hcs <Plug>JzwikiCreateFileSplit
+  nmap <silent> <buffer> <Leader>hcv <Plug>JzwikiCreateFileVSplit
+  nmap <silent> <buffer> <Leader>hct <Plug>JzwikiCreateFileTab
   nmap <silent> <buffer> <Leader>tt <Plug>JzwikiToggleCheckbox
 endif
 
