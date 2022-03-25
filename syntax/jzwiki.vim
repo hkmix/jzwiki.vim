@@ -1,4 +1,4 @@
-" jz wiki syntax file, based on help.vim.
+" jzwiki syntax file, based on help.vim.
 
 " Quit when a (custom) syntax file was already loaded
 if exists("b:current_syntax")
@@ -6,46 +6,50 @@ if exists("b:current_syntax")
 endif
 
 if has("ebcdic")
-  syn match jzHyperTextJump	"\\\@<!|[^"*|]\+|" contains=jzBar
-  syn match jzHyperTextEntry	"\*[^"*|]\+\*\s"he=e-1 contains=jzStar
-  syn match jzHyperTextEntry	"\*[^"*|]\+\*$" contains=jzStar
+  syn match jzHyperTextJump	"\\\@<!|[^"*|]\+|"		contains=jzBar
+  syn match jzHyperTextEntry	"\*[^"*|]\+\*\s"he=e-1		contains=jzStar
+  syn match jzHyperTextEntry	"\*[^"*|]\+\*$"			contains=jzStar
 else
-  syn match jzHyperTextJump	"\\\@<!|[#-)!+-~]\+|" contains=jzBar
-  syn match jzHyperTextEntry	"\*[#-)!+-~]\+\*\s"he=e-1 contains=jzStar
-  syn match jzHyperTextEntry	"\*[#-)!+-~]\+\*$" contains=jzStar
+  syn match jzHyperTextJump	"\\\@<!|[#-)!+-~]\+|"		contains=jzBar
+  syn match jzHyperTextEntry	"\*[#-)!+-~]\+\*\s"he=e-1	contains=jzStar
+  syn match jzHyperTextEntry	"\*[#-)!+-~]\+\*$"		contains=jzStar
 endif
 
 if has("conceal")
-  syn match jzBacktick		contained "`" conceal
-  syn match jzBar		contained "|" conceal
-  syn match jzBraceL		contained "{" conceal
-  syn match jzBraceR		contained "}" conceal
-  syn match jzFwdSlash		contained "/" conceal
-  syn match jzIgnore		contained "." conceal
-  syn match jzItalic		contained "/" conceal
-  syn match jzStar		contained "\*" conceal
-  syn match jzUnderscore	contained "_" conceal
+  syn match jzBacktick		contained "`"	transparent conceal
+  syn match jzBar		contained "|"	transparent conceal
+  syn match jzBraceL		contained "{"	transparent conceal
+  syn match jzBraceR		contained "}"	transparent conceal
+  syn match jzFwdSlash		contained "/"	transparent conceal
+  syn match jzIgnore		contained "."	transparent conceal
+  syn match jzItalic		contained "/"	transparent conceal
+  syn match jzStar		contained "\*"	transparent conceal
+  syn match jzTilde		contained "\~"	transparent conceal
+  syn match jzUnderscore	contained "_"	transparent conceal
 else
-  syn match jzBacktick		contained "`"
-  syn match jzBar		contained "|"
-  syn match jzBraceL		contained "{"
-  syn match jzBraceR		contained "}"
-  syn match jzFwdSlash		contained "/"
-  syn match jzIgnore		contained "."
-  syn match jzItalic		contained "/"
-  syn match jzStar		contained "\*"
-  syn match jzUnderscore	contained "_"
+  syn match jzBacktick		contained "`"	transparent
+  syn match jzBar		contained "|"	transparent
+  syn match jzBraceL		contained "{"	transparent
+  syn match jzBraceR		contained "}"	transparent
+  syn match jzFwdSlash		contained "/"	transparent
+  syn match jzIgnore		contained "."	transparent
+  syn match jzItalic		contained "/"	transparent
+  syn match jzStar		contained "\*"	transparent
+  syn match jzTilde		contained "\~"	transparent
+  syn match jzUnderscore	contained "_"	transparent
 endif
+
 syn region jzCodeBlock		start=/```/ end=/```/
-syn match jzCommand		"`[^`]\+`" contains=jzBacktick,jzBacktick
-syn match jzItalic		"/[^/]\+/" contains=jzFwdSlash,jzFwdSlash
-syn match jzUnderlined		"_[^_]\+_" contains=jzUnderscore,jzUnderscore
-syn match jzBolded		"{[^}]\+}" contains=jzBraceL,jzBraceR
+syn match jzBolded		"{[^}]\+}"	contains=jzBraceL,jzBraceR
+syn match jzCommand		"`[^`]\+`"	contains=jzBacktick
+syn match jzItalic		"/[^/]\+/"	contains=jzFwdSlash
+syn match jzStrikethrough	"\~[^~]\+\~"	contains=jzTilde
+syn match jzUnderlined		"_[^_]\+_"	contains=jzUnderscore
 
 syn match jzCheckboxF		"\[[^Xx-]\]"
 syn match jzCheckboxT		"\[[Xx-]\]"
 syn match jzError		"\cerror:"
-syn match jzModeline		"^\s*-\{3,\}$"
+syn match jzLine		"^\s*-\{3,\}$"
 syn match jzModeline		"^\s*vim:.*"
 syn match jzNavigation		"\c\(prev\|next\):"
 syn match jzNote		"\c\(todo\|note\):"
@@ -59,6 +63,7 @@ syn sync minlines=40
 " Custom highlights
 hi Bold				cterm=bold gui=bold
 hi Italic			cterm=italic gui=italic
+hi Strikethrough		ctermfg=10 cterm=strikethrough gui=strikethrough
 hi Underline			cterm=underline gui=underline
 
 hi def link Subtitle		Identifier
@@ -76,6 +81,7 @@ hi def link jzHyperTextEntry	helpHyperTextEntry
 hi def link jzHyperTextJump	helpHyperTextJump
 hi def link jzIgnore		Ignore
 hi def link jzItalic		Italic
+hi def link jzLine		Comment
 hi def link jzModeline		Comment
 hi def link jzNavigation	PreProc
 hi def link jzNotVi		Special
@@ -85,6 +91,7 @@ hi def link jzSectionDelim	Special
 hi def link jzSpecial		helpVim
 hi def link jzStar		Ignore
 hi def link jzStatus		PreProc
+hi def link jzStrikethrough	Strikethrough
 hi def link jzTodo		Todo
 hi def link jzURL		String
 hi def link jzUnderlined	Underline
@@ -92,4 +99,4 @@ hi def link jzWarning		Preproc
 
 let b:current_syntax = "jzwiki"
 
-" vim: ts=8 sw=2 noet
+" vim: ts=8 sw=0 sts=-1 noet

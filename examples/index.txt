@@ -3,6 +3,7 @@
 # Features
 
   - You can {bold}, _underline_, /italicize/ text (if your terminal supports it).
+    - There is also the option of ~striking through~.
   - Backticks dims text, but can be used to `show_code_snippets`.
   - [ ] Checkboxes can be toggled, try {<Leader>tt} on this line.
     - [x] They look like this when toggled
