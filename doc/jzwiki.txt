@@ -53,6 +53,9 @@ has the following:
 	`_emphasis_`
 		Underlined text.
 
+	`~emphasis~`
+		Strikethrough text.
+
 	`[ ]` (incomplete)
 	`[x]` (complete)
 	`[-]` (aborted)
@@ -67,7 +70,7 @@ There are a number of special highlighted words:
 		The vim modeline. Useful to treat `.txt` files as `jzwiki`
 		filetype.
 
-	`(prev|next|status|error):` (colon necessary)
+	`(prev|next|status|error|warn|warning):` (colon necessary)
 		For special hyperlinks or highlights.
 
 ==============================================================================
