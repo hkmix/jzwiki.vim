@@ -29,8 +29,14 @@ has the following:
 
 	`*anchor_name*`
 		Hyper text entry, this marks the jump-to anchor.
+
 		Note: For hyper text entries and names, they must not contain
 		spaces. If it is not highlighted as a link, it won't work.
+
+		Note: `#` is treated as an intrapage anchor, and the jump
+		commands will link only to the root, e.g. if your link is
+		target#page, running say <Leader>hcv takes you to target.txt
+		instead of target#page.txt.
 
 	`|link_name|`
 		Hyper text link, you use *CTRL-]* on this to jump to the
@@ -41,8 +47,10 @@ has the following:
 
 	`<backtick>code text<backtick>`
 		Text that is code, coloured like a comment.
-		Note: Triple backtick code blocks also treated like code, a la
-		markdown.
+>
+	``` code text ```
+<		Text that is code, supported across lines like a Markdown
+		fenced code block.
 
 	`{emphasis}`
 		Bold text.
