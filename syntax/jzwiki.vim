@@ -50,8 +50,8 @@ syn match jzItalic		"\(^\|\s\)\zs/[^/]\+/\ze\($\|\s\)"	contains=jzFwdSlash
 syn match jzStrikethrough	"\(^\|\s\)\zs\~[^\~]\+\~\ze\($\|\s\)"	contains=jzTilde
 syn match jzUnderlined		"\(^\|\s\)\zs_[^_]\+_\ze\($\|\s\)"	contains=jzUnderscore
 
-syn match jzCheckboxF		"\[[^Xx-]\]"
-syn match jzCheckboxT		"\[[Xx-]\]"
+syn match jzCheckboxF		"\(^\|\s\)\zs\[[^Xx-]\]"
+syn match jzCheckboxT		"\(^\|\s\)\zs\[[Xx-]\]"
 syn match jzError		"\cerror:"
 syn match jzLine		"^\s*-\{3,\}$"
 syn match jzModeline		"^\s*vim:.*"
