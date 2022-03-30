@@ -1,6 +1,6 @@
 " Detect root directory if it exists.
 function jzwiki#detect_root()
-  let l:root_dir = getcwd()
+  let l:root_dir = expand("%:p:h")
   if !empty(g:jzwiki_root_file)
     let l:depth = g:jzwiki_max_depth
     let l:maybe_root = fnamemodify(l:root_dir, ":p")
@@ -71,9 +71,13 @@ function jzwiki#new_file_preamble() abort
   execute 'normal! 3k'
 endfunction
 
+function jzwiki#get_filename_from_tag() abort
+  return substitute(expand('<cexpr>'), '#.*', '', '') . '.txt'
+endfunction
+
 function jzwiki#create_file() abort
   let l:new_file_path = expand('%:p:h')
-  let l:new_file_name = l:new_file_path . '/' . expand('<cexpr>') . '.txt'
+  let l:new_file_name = l:new_file_path . '/' . jzwiki#get_filename_from_tag()
 
   " If file exists, just open it.
   if filereadable(l:new_file_name)

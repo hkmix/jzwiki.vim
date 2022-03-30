@@ -10,7 +10,7 @@ let s:cpo_save = &cpo
 set cpo&vim
 
 setlocal formatoptions+=tcroql
-setlocal nonumber ts=2 sw=0 sts=-1 isk=@,33,45,48-58,_,192-255
+setlocal nonumber ts=2 sw=0 sts=-1 isk=@,33,35,45,48-58,_,192-255
 if has('conceal')
   setlocal cole=2 cocu=nc
 endif
