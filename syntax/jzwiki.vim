@@ -9,6 +9,11 @@ if has("ebcdic")
   syn match jzHyperTextJump	"\\\@<!|[^"*|]\+|"		contains=jzBar
   syn match jzHyperTextEntry	"\*[^"*|]\+\*\s"he=e-1		contains=jzStar
   syn match jzHyperTextEntry	"\*[^"*|]\+\*$"			contains=jzStar
+
+  " For link entries, hide the root, e.g. *page#abc* shows just "abc".
+  if has("conceal")
+    syn match jzHyperTextRoot	contained "[^"*|#]\{-}#" transparent conceal
+  endif
 else
   syn match jzHyperTextJump	"\\\@<!|[#-)!+-~]\+|"		contains=jzBar
   syn match jzHyperTextEntry	"\*[#-)!+-~]\+\*\s"he=e-1	contains=jzStar
@@ -22,10 +27,10 @@ if has("conceal")
   syn match jzBraceR		contained "}"	transparent conceal
   syn match jzFwdSlash		contained "/"	transparent conceal
   syn match jzIgnore		contained "."	transparent conceal
-  syn match jzItalic		contained "/"	transparent conceal
   syn match jzStar		contained "\*"	transparent conceal
   syn match jzTilde		contained "\~"	transparent conceal
-  syn match jzUnderscore	contained "_"	transparent conceal
+  syn match jzUnderscore	contained "\<_"	transparent conceal
+  syn match jzUnderscore	contained "_\>"	transparent conceal
 else
   syn match jzBacktick		contained "`"	transparent
   syn match jzBar		contained "|"	transparent
@@ -33,18 +38,17 @@ else
   syn match jzBraceR		contained "}"	transparent
   syn match jzFwdSlash		contained "/"	transparent
   syn match jzIgnore		contained "."	transparent
-  syn match jzItalic		contained "/"	transparent
   syn match jzStar		contained "\*"	transparent
   syn match jzTilde		contained "\~"	transparent
   syn match jzUnderscore	contained "_"	transparent
 endif
 
 syn region jzCodeBlock		start=/```/ end=/```/
-syn match jzBolded		"{[^}]\+}"	contains=jzBraceL,jzBraceR
-syn match jzCommand		"`[^`]\+`"	contains=jzBacktick
-syn match jzItalic		"/[^/]\+/"	contains=jzFwdSlash
-syn match jzStrikethrough	"\~[^~]\+\~"	contains=jzTilde
-syn match jzUnderlined		"_[^_]\+_"	contains=jzUnderscore
+syn match jzBolded		"\(^\|\s\)\zs{[^}]\+}\ze\($\|\s\)"	contains=jzBraceL,jzBraceR
+syn match jzCommand		"\(^\|\s\)\zs`[^`]\+`\ze\($\|\s\)"	contains=jzBacktick
+syn match jzItalic		"\(^\|\s\)\zs/[^/]\+/\ze\($\|\s\)"	contains=jzFwdSlash
+syn match jzStrikethrough	"\(^\|\s\)\zs\~[^\~]\+\~\ze\($\|\s\)"	contains=jzTilde
+syn match jzUnderlined		"\(^\|\s\)\zs_[^_]\+_\ze\($\|\s\)"	contains=jzUnderscore
 
 syn match jzCheckboxF		"\[[^Xx-]\]"
 syn match jzCheckboxT		"\[[Xx-]\]"
@@ -53,7 +57,7 @@ syn match jzLine		"^\s*-\{3,\}$"
 syn match jzModeline		"^\s*vim:.*"
 syn match jzNavigation		"\c\(prev\|next\):"
 syn match jzNote		"\c\(todo\|note\):"
-syn match jzSectionDelim	"^#\+.*$"
+syn match jzSectionDelim	"^#\+.*$"	contains=jzHyperTextEntry
 syn match jzSpecial		"<[^>]\+>"
 syn match jzStatus		"\cstatus:"
 syn match jzWarning		"\cwarn\(ing\)\?:"
@@ -99,4 +103,4 @@ hi def link jzWarning		Preproc
 
 let b:current_syntax = "jzwiki"
 
-" vim: ts=8 sw=0 sts=-1 noet
+" vim: ts=8 sw=2 sts=-1 et
